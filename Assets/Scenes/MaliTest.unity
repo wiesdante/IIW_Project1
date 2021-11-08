@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.30692244, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -389,7 +389,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 389125317}
-  m_LocalRotation: {x: -0.000000011052864, y: 0.9286838, z: -0.37087256, w: -0.000000027676936}
+  m_LocalRotation: {x: -7.2668684e-17, y: 0.9286838, z: -0.37087256, w: -6.863057e-16}
   m_LocalPosition: {x: -0.26, y: 10.49, z: 29.11}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -521,7 +521,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 455778952}
-  m_LocalRotation: {x: -0.000000011052864, y: 0.9286838, z: -0.37087256, w: -0.000000027676936}
+  m_LocalRotation: {x: -7.2668684e-17, y: 0.9286838, z: -0.37087256, w: -6.863057e-16}
   m_LocalPosition: {x: -0.26, y: 10.49, z: 29.11}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -1010,7 +1010,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1585503942}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.49824739, y: -2.534038, z: 12.325855}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1812600425}
@@ -1029,6 +1029,7 @@ GameObject:
   - component: {fileID: 1812600428}
   - component: {fileID: 1812600427}
   - component: {fileID: 1812600426}
+  - component: {fileID: 1812600429}
   m_Layer: 0
   m_Name: Wall
   m_TagString: Wall
@@ -1044,7 +1045,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1812600424}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 9.001753, y: 5.534038, z: -3.4}
+  m_LocalPosition: {x: 9.5, y: 3, z: 0}
   m_LocalScale: {x: 1, y: 5, z: 10}
   m_Children: []
   m_Father: {fileID: 1585503943}
@@ -1112,6 +1113,25 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1812600424}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1812600429
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1812600424}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cca841f20f07c9143947991c596e4827, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 15
+  moveAxis: 0
+  moveToNegative: 1
+  distance: 20
+  rotateSpeed: 30
+  rotateAxis: 1
+  rotateClockwise: 0
 --- !u!1 &2130570338
 GameObject:
   m_ObjectHideFlags: 0
