@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
 namespace Obstacles
@@ -11,101 +12,159 @@ namespace Obstacles
             Y,
             Z
         }
-        
+
+        #region Movement Related Variables
+
         [Header("Movement Settings")] 
         public float moveSpeed;
         public Axis moveAxis;
         public bool moveToNegative;
         public float distance;
-
+        
         private Vector3 _movementVector;
         private Vector3 _startingPosition;
         private Vector3 _targetPosition;
         private bool _movingToTarget = true;
         
+        #endregion
+
+        #region Rotate Related Variables
+
         [Header("Rotation Settings")]
         public float rotateSpeed;
         public Axis rotateAxis;
         public bool rotateClockwise;
 
         private Vector3 _rotationVector;
+        
+        #endregion
+
+        #region Freeze Related Variables
+        
+        [Header("Freeze Related")]
+        [SerializeField]private GameObject freezeParticles;
+        [SerializeField]private Material frozenWallMaterial;
+        private Material _mainMaterial;
+        
+        private bool _isFrozen;
+        private Coroutine _freezeCoroutine;
+
+        #endregion
+
+        private MeshRenderer _meshRenderer;
 
         private void Start()
         {
             _startingPosition = transform.position;
-            
+            _meshRenderer = gameObject.GetComponent<MeshRenderer>();
+
+            #region Setting Movement Vector and Target Position
+
             switch (moveAxis)
             {
                 case Axis.X:
-                    _movementVector = Vector3.right;
-                    if (moveToNegative)
-                    {
-                        _targetPosition = _startingPosition + Vector3.right * distance * -1;
-                    }
-                    else
-                    {
-                        _targetPosition = _startingPosition + Vector3.right * distance;
-                    }
+                    _movementVector = Vector3.right * (moveToNegative ? -1 : 1);
+                    _targetPosition = _startingPosition + Vector3.right * distance * (moveToNegative ? -1 : 1);
                     break;
                 case Axis.Y:
-                    _movementVector = Vector3.up;
-                    if (moveToNegative)
-                    {
-                        _targetPosition = _startingPosition + Vector3.up * distance * -1;
-                    }
-                    else
-                    {
-                        _targetPosition = _startingPosition + Vector3.up * distance;
-                    }
+                    _movementVector = Vector3.up * (moveToNegative ? -1 : 1);
+                    _targetPosition = _startingPosition + Vector3.up * distance * (moveToNegative ? -1 : 1);
                     break;
                 case Axis.Z:
-                    _movementVector = Vector3.forward;
-                    if (moveToNegative)
-                    {
-                        _targetPosition = _startingPosition + Vector3.forward * distance * -1;
-                    }
-                    else
-                    {
-                        _targetPosition = _startingPosition + Vector3.forward * distance;
-                    }
+                    _movementVector = Vector3.forward * (moveToNegative ? -1 : 1);
+                    _targetPosition = _startingPosition + Vector3.forward * distance * (moveToNegative ? -1 : 1);
                     
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
             }
 
-            if (moveToNegative) 
-                _movementVector *= -1;
+            #endregion
             
-            
+            #region Setting Rotation Vector
+
             _rotationVector = rotateAxis switch
             {
-                Axis.X => Vector3.right,
-                Axis.Y => Vector3.up,
-                Axis.Z => Vector3.forward,
+                Axis.X => Vector3.right * (rotateClockwise ? 1 : -1),
+                Axis.Y => Vector3.up * (rotateClockwise ? 1 : -1),
+                Axis.Z => Vector3.forward * (rotateClockwise ? 1 : -1),
                 _ => _rotationVector
             };
 
-            if (!rotateClockwise) 
-                _rotationVector *= -1;
+            #endregion
+
+            #region Freeze Related Teachings
+
+            _mainMaterial = _meshRenderer.material;
+
+            #endregion
         }
 
         private void Update()
         {
-            Transform transform1;
-            (transform1 = transform).Rotate(_rotationVector * (rotateSpeed * Time.deltaTime));
-            transform1.position += _movementVector * (moveSpeed * Time.deltaTime);
-            switch (_movingToTarget)
+            var transform1 = transform;
+
+            #region Moving and Rotating the Wall
+
+            if (moveSpeed > 0)
             {
-                case true when Vector3.Distance(transform1.position, _targetPosition) < 1:
-                    _movementVector *= -1;
-                    _movingToTarget = false;
-                    break;
-                case false when Vector3.Distance(transform1.position, _startingPosition) < 1:
-                    _movementVector *= -1;
-                    _movingToTarget = true;
-                    break;
+                transform1.position += _movementVector * (moveSpeed * Time.deltaTime * (_movingToTarget ? 1 : -1) * (_isFrozen ? 0 : 1));
+            }
+            
+            if (rotateSpeed > 0)
+            {
+                transform1.Rotate(_rotationVector * (rotateSpeed * Time.deltaTime * (_isFrozen ? 0 : 1)));
+            }
+
+            #endregion
+
+            #region Switch Direction After Reaching Target
+            
+            var position = transform1.position;
+            
+            _movingToTarget = _movingToTarget switch
+            {
+                true when Vector3.Distance(position, _targetPosition) < 1 => false,
+                false when Vector3.Distance(position, _startingPosition) < 1 => true,
+                _ => _movingToTarget
+            };
+            
+            #endregion
+
+            if (Input.GetKeyDown(KeyCode.A))
+            {
+                Freeze(3);
             }
         }
+
+        #region Freeze Related Functions
+
+        public void Freeze(float freezeTime)
+        {
+            UnFreeze();
+            _freezeCoroutine = StartCoroutine(FreezeCoroutine(freezeTime));
+        }
+
+        private IEnumerator FreezeCoroutine(float freezeTime)
+        {
+            _isFrozen = true;
+            freezeParticles.SetActive(true);
+            _meshRenderer.material = frozenWallMaterial;
+
+            yield return new WaitForSeconds(freezeTime);
+            
+            UnFreeze();
+        }
+
+        public void UnFreeze()
+        {
+            if(_freezeCoroutine != null) StopCoroutine(_freezeCoroutine);
+            
+            _isFrozen = false;
+            freezeParticles.SetActive(false);
+            _meshRenderer.material = _mainMaterial;
+        }
+
+        #endregion
     }
 }
