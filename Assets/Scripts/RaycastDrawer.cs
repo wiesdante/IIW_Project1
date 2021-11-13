@@ -16,18 +16,21 @@ public class RaycastDrawer : MonoBehaviour
         input.onReleaseEvent += Input_onReleaseEvent;
     }
 
-    private void Input_onReleaseEvent(Vector3 obj)
+    private void Input_onStartEvent(Vector3 obj)
     {
-
+        renderer.enabled = true;
     }
 
     private void Input_onHoldEvent(Vector3 direction)
     {
         Vector3[] points = new Vector3[] { transform.position, Vector2.zero , Vector2.zero};
         points[1] = points[0] + direction;
-        if(Physics.Raycast(transform.position, direction, out RaycastHit hit))
+        if(Physics.Raycast(transform.position, direction, out RaycastHit hit, direction.magnitude))
         {
-            hitSphere.transform.position = hit.point;
+            if(hitSphere.activeSelf)
+            {
+                hitSphere.transform.position = hit.point;
+            }
             if (hit.collider.gameObject.CompareTag("Wall"))
             {
                 Vector3 dir = (hit.point - points[0]); // TO WALL DIR
@@ -47,6 +50,17 @@ public class RaycastDrawer : MonoBehaviour
                 {
                     points[2] = points[0];
                 }
+                hitSphere.SetActive(false);
+            }
+            else if (hit.collider.gameObject.CompareTag("Obstacle"))
+            {
+                points[2] = points[0];
+                hitSphere.SetActive(true);
+            }
+            else
+            {
+                points[2] = points[0];
+                hitSphere.SetActive(false);
             }
         }
         else
@@ -58,8 +72,11 @@ public class RaycastDrawer : MonoBehaviour
         renderer.SetPositions(points);
     }
 
-    private void Input_onStartEvent(Vector3 obj)
+   
+    private void Input_onReleaseEvent(Vector3 obj)
     {
-
+        renderer.enabled = false;
+        input.locked = true;
+        hitSphere.SetActive(false);
     }
 }
