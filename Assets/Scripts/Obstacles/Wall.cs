@@ -98,6 +98,8 @@ namespace Obstacles
             _mainMaterial = _meshRenderer.material;
 
             #endregion
+
+            GameManager.instance.walls.Add(this);
         }
 
         private void Update()
@@ -131,10 +133,6 @@ namespace Obstacles
             
             #endregion
 
-            if (Input.GetKeyDown(KeyCode.A))
-            {
-                Freeze(3);
-            }
         }
 
         #region Freeze Related Functions
