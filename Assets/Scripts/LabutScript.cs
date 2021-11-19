@@ -27,7 +27,7 @@ public class LabutScript : MonoBehaviour
     {
         if(isScaling)
         {
-            transform.localScale -= Vector3.one * scaleSpeed;
+            transform.localScale -= Vector3.one *  scaleSpeed;
         }
         if(transform.localScale.magnitude <= 0.1f)
         {
