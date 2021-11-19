@@ -4,10 +4,11 @@ using UnityEngine;
 public class MobileInput : MonoBehaviour
 {
     public static MobileInput Instance;
-    public bool locked;
+    protected bool locked;
     public event Action<Vector3> onReleaseEvent;
     public event Action<Vector3> onHoldEvent; 
     public event Action<Vector3> onStartEvent; 
+
 
     private void Awake()
     {
@@ -23,24 +24,34 @@ public class MobileInput : MonoBehaviour
     protected Touch _touch;
     private void Update()
     {
-        if(!locked)
+        if(!locked && GameManager.gameStarted)
         {
             GetTouchDirection();
         }
+       
     }
     protected void InvokeStart(Vector3 dir)
     {
-        onStartEvent?.Invoke(dir);
+        if(!locked) onStartEvent?.Invoke(dir);
     }
     public virtual void GetTouchDirection()
     { 
     }
     protected void InvokeRelease(Vector3 dir)
     {
-        onReleaseEvent?.Invoke(dir);
+        if (!locked) onReleaseEvent?.Invoke(dir);
+       
     }
     protected void InvokeHold(Vector3 dir)
     {
-        onHoldEvent?.Invoke(dir);
+        if (!locked) onHoldEvent?.Invoke(dir);
+    }
+    public void LockInput()
+    {
+        locked = true;
+    }
+    public void UnlockInput()
+    {
+        locked = false;
     }
 }

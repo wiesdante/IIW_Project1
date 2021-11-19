@@ -99,7 +99,6 @@ namespace Obstacles
 
             #endregion
 
-            GameManager.instance.walls.Add(this);
         }
 
         private void Update()

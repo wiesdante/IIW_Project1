@@ -7,27 +7,37 @@ public class Movement : MonoBehaviour
     // Start is called before the first frame update
     MobileInput input;
     Rigidbody rb;
-    bool onGround;
+    bool forceApplied;
     void Start()
     {
-        onGround = false;
         rb = GetComponent<Rigidbody>();
         input = GetComponent<DragRelease>();
         input.onReleaseEvent += Input_onReleaseEvent;
-        
+        input.onStartEvent += Input_onStartEvent;
+        forceApplied = false;
     }
+
+    private void Input_onStartEvent(Vector3 obj)
+    {
+        if(forceApplied)
+        {
+            input.LockInput();
+        }
+    }
+
     private void FixedUpdate()
     {
-        if(rb.velocity.magnitude < 0.2f )
+        if (rb.velocity.magnitude < 0.2f)
         {
             rb.velocity = Vector3.zero;
-            input.locked = false;
+            input.UnlockInput();
         }
     }
 
     private void Input_onReleaseEvent(Vector3 obj)
     {
         rb.AddForce(obj, ForceMode.Impulse);
+        forceApplied = true;
+        input.LockInput();
     }
-        
 }

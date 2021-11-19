@@ -7,22 +7,29 @@ public class RaycastDrawer : MonoBehaviour
     [SerializeField] GameObject hitSphere;
     MobileInput input;
     LineRenderer renderer;
+
+    [SerializeField] float animationSpeed = 0.5f;
+    [SerializeField] float lineWidth = 3f;
     private void Start()
     {
         input = GetComponent<DragRelease>();
         renderer = GetComponent<LineRenderer>();
-        input.onStartEvent += Input_onStartEvent;
         input.onHoldEvent += Input_onHoldEvent;
         input.onReleaseEvent += Input_onReleaseEvent;
+        renderer.enabled = false;
+        renderer.widthMultiplier = lineWidth;
     }
 
-    private void Input_onStartEvent(Vector3 obj)
-    {
-        renderer.enabled = true;
-    }
 
     private void Input_onHoldEvent(Vector3 direction)
     {
+        if(!renderer.enabled)
+        {
+            renderer.enabled = true;
+        }
+
+        renderer.material.SetTextureOffset("_BaseMap", Vector2.right * Time.time * animationSpeed);
+
         Vector3[] points = new Vector3[] { transform.position, Vector2.zero , Vector2.zero};
         points[1] = points[0] + direction;
         if(Physics.Raycast(transform.position, direction, out RaycastHit hit, direction.magnitude))
@@ -48,35 +55,33 @@ public class RaycastDrawer : MonoBehaviour
                 }
                 else
                 {
-                    points[2] = points[0];
+                    points[2] = points[1];
                 }
                 hitSphere.SetActive(false);
             }
             else if (hit.collider.gameObject.CompareTag("Obstacle"))
             {
-                points[2] = points[0];
+                points[2] = points[1];
                 hitSphere.SetActive(true);
             }
             else
             {
-                points[2] = points[0];
+                points[2] = points[1];
                 hitSphere.SetActive(false);
             }
         }
         else
         {
-            points[2] = points[0];
+            points[2] = points[1];
         }
         points[1].y = points[0].y;
         points[2].y = points[1].y;
         renderer.SetPositions(points);
     }
 
-   
     private void Input_onReleaseEvent(Vector3 obj)
     {
         renderer.enabled = false;
-        input.locked = true;
         hitSphere.SetActive(false);
     }
 }
