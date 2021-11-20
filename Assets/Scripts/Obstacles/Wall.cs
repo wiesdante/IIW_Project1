@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using Managers;
 using UnityEngine;
 
 namespace Obstacles
@@ -132,6 +133,16 @@ namespace Obstacles
             
             #endregion
 
+        }
+
+        private void OnEnable()
+        {
+            EventManager.GlobalFreeze += Freeze;
+        }
+
+        private void OnDisable()
+        {
+            EventManager.GlobalFreeze -= Freeze;
         }
 
         #region Freeze Related Functions
