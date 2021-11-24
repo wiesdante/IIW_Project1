@@ -3595,13 +3595,14 @@ GameObject:
   - component: {fileID: 870260564}
   - component: {fileID: 870260563}
   - component: {fileID: 870260562}
+  - component: {fileID: 870260567}
   m_Layer: 0
   m_Name: FreezePickup
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &870260562
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3626,8 +3627,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1, y: 2.1756268, z: 1}
+  m_Center: {x: 0, y: -0.5878134, z: 0}
 --- !u!23 &870260564
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -3685,13 +3686,34 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 870260561}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 2.22, z: 15.74}
+  m_LocalPosition: {x: 3.13, y: 2.22, z: -22.78}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 210261302}
   m_Father: {fileID: 0}
   m_RootOrder: 24
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &870260567
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 870260561}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cca841f20f07c9143947991c596e4827, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 1
+  moveAxis: 0
+  moveToNegative: 1
+  distance: 6
+  rotateSpeed: 0
+  rotateAxis: 0
+  rotateClockwise: 0
+  freezeParticles: {fileID: 0}
+  frozenWallMaterial: {fileID: 0}
 --- !u!1001 &881672140
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5501,8 +5523,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1475351969}
   m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -0.5271004, y: 0.913249, z: 0.002377475}
-  m_LocalScale: {x: 0.7681626, y: 19.489948, z: 0.0025107958}
+  m_LocalPosition: {x: -0.5271004, y: 5.7441, z: 0.002377475}
+  m_LocalScale: {x: 0.7681626, y: 29.151163, z: 0.0025107958}
   m_Children: []
   m_Father: {fileID: 92760200}
   m_RootOrder: 2

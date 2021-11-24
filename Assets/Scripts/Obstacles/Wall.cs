@@ -156,7 +156,7 @@ namespace Obstacles
         private IEnumerator FreezeCoroutine(float freezeTime)
         {
             _isFrozen = true;
-            freezeParticles.SetActive(true);
+            if (freezeParticles != null) freezeParticles.SetActive(true);
             _meshRenderer.material = frozenWallMaterial;
 
             yield return new WaitForSeconds(freezeTime);
@@ -169,7 +169,7 @@ namespace Obstacles
             if(_freezeCoroutine != null) StopCoroutine(_freezeCoroutine);
             
             _isFrozen = false;
-            freezeParticles.SetActive(false);
+            if(freezeParticles != null) freezeParticles.SetActive(false);
             _meshRenderer.material = _mainMaterial;
         }
 
