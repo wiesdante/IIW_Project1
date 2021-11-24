@@ -19,6 +19,7 @@ public class LabutScript : MonoBehaviour
     {
         if(!isHit && (collision.transform.CompareTag("Labut") || collision.transform.CompareTag("Player")))
         {
+            transform.parent.GetComponent<LabutParent>().Devrildim();
             ScoreManager.Instance.IncreaseScore(10);
             isHit = true;
             StartCoroutine(StartDestroy());
