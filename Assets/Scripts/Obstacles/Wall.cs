@@ -126,8 +126,8 @@ namespace Obstacles
             
             _movingToTarget = _movingToTarget switch
             {
-                true when Vector3.Distance(position, _targetPosition) < 1 => false,
-                false when Vector3.Distance(position, _startingPosition) < 1 => true,
+                true when Vector3.Distance(position, _targetPosition) < .3f => false,
+                false when Vector3.Distance(position, _startingPosition) < .3f => true,
                 _ => _movingToTarget
             };
             

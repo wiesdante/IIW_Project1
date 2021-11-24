@@ -8,7 +8,7 @@ public class ScoreManager : MonoBehaviour
     
     private int score = 0;
 
-    [SerializeField] int requiredScore = 200;
+    public int requiredScore = 200;
 
     public static ScoreManager Instance { get; private set; }
     private void Awake()
@@ -35,10 +35,6 @@ public class ScoreManager : MonoBehaviour
         {
             score += add;
             playerUI.UpdateScore(score);
-            if(score >= requiredScore)
-            {
-                LevelManager.Instance.IncreaseProgress(1);
-            }
         }
     }
     public void ResetScore()

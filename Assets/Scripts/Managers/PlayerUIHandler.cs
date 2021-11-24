@@ -10,6 +10,8 @@ public class PlayerUIHandler : MonoBehaviour
     [SerializeField] private TextMeshProUGUI infoText;
     [SerializeField] private TextMeshProUGUI countdownText;
     [SerializeField] private Slider ballSlider;
+    [SerializeField] private Image strikeImage;
+
     public bool Instantiated;
     public static PlayerUIHandler Instance { get; private set; }
     private void Awake()
@@ -55,5 +57,10 @@ public class PlayerUIHandler : MonoBehaviour
         countdownText.text = "GO !";
         yield return new WaitForSeconds(1f);
         countdownText.gameObject.SetActive(false);
+    }
+
+    public void SetStrikeImg(bool active)
+    {
+        strikeImage.gameObject.SetActive(active);
     }
 }

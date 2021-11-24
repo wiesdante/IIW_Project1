@@ -18,13 +18,14 @@ public class LabutParent : MonoBehaviour
         {
             print("strike");
             StartCoroutine(SelfDestroyCoroutine(2f));
-            //STRIKE
         }
     }
 
     IEnumerator SelfDestroyCoroutine(float delay)
     {
+        PlayerUIHandler.Instance.SetStrikeImg(true);
         yield return new WaitForSeconds(delay);
+        PlayerUIHandler.Instance.SetStrikeImg(false);
         Destroy(this.gameObject);
     }
 }

@@ -27,9 +27,14 @@ public class Movement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (rb.velocity.magnitude < 0.2f)
+        if(rb.velocity.magnitude < 5f && rb.angularVelocity.magnitude > 1f)
+        {
+            rb.AddForce(rb.velocity * -2f, ForceMode.Acceleration);
+        }
+        if (rb.velocity.magnitude < 1f)
         {
             rb.velocity = Vector3.zero;
+            rb.angularVelocity = Vector3.zero;
             input.UnlockInput();
         }
     }

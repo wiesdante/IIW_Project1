@@ -41,7 +41,7 @@ public class RaycastDrawer : MonoBehaviour
             if (hit.collider.gameObject.CompareTag("Wall"))
             {
                 Vector3 dir = (hit.point - points[0]); // TO WALL DIR
-                if(dir.magnitude < direction.magnitude)
+                if (dir.magnitude < direction.magnitude)
                 {
                     dir.x *= -1;
                     float dirLength = direction.magnitude - dir.magnitude;
@@ -52,6 +52,19 @@ public class RaycastDrawer : MonoBehaviour
                     }
                     points[2] = hit.point + dir;
                     points[1] = hit.point;
+                    if (Physics.Raycast(points[1], points[2], out RaycastHit hit2, dirLength))
+                    {
+                        if (hit2.collider.gameObject.CompareTag("Obstacle") || hit2.collider.gameObject.CompareTag("Labut"))
+                        {
+                            points[2] = hit2.point;
+                            if (hit2.collider.gameObject.CompareTag("Obstacle")) hitSphere.SetActive(true);
+                        }
+                        else
+                        {
+                            points[2] = hit2.point;
+                            hitSphere.SetActive(false);
+                        }
+                    }
                 }
                 else
                 {
@@ -59,10 +72,11 @@ public class RaycastDrawer : MonoBehaviour
                 }
                 hitSphere.SetActive(false);
             }
-            else if (hit.collider.gameObject.CompareTag("Obstacle"))
+            else if (hit.collider.gameObject.CompareTag("Obstacle") || hit.collider.gameObject.CompareTag("Labut"))
             {
+                points[1] = hit.point;
                 points[2] = points[1];
-                hitSphere.SetActive(true);
+                if(hit.collider.gameObject.CompareTag("Obstacle")) hitSphere.SetActive(true);
             }
             else
             {
