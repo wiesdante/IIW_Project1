@@ -8,6 +8,7 @@ public class LabutScript : MonoBehaviour
     [SerializeField] private float destroyTime = 5f;
     [SerializeField] private float scaleTime = 2f;
     bool isScaling;
+    public bool isHit = false;
 
     private void Start()
     {
@@ -16,9 +17,10 @@ public class LabutScript : MonoBehaviour
     }
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.transform.CompareTag("Labut") || collision.transform.CompareTag("Player"))
+        if(!isHit && (collision.transform.CompareTag("Labut") || collision.transform.CompareTag("Player")))
         {
-            ScoreManager.Instance.IncreaseScore(9);
+            ScoreManager.Instance.IncreaseScore(10);
+            isHit = true;
             StartCoroutine(StartDestroy());
         }
     }
