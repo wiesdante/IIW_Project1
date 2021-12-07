@@ -3,7 +3,7 @@ using UnityEngine.UI;
 
 namespace UI
 {
-    public class ScoreManagerV2 : MonoBehaviour
+    public class ScoreManagerV2 : Singleton<ScoreManagerV2>
     {
         public int maxScoreForLevel;
         private int _currentScore;
