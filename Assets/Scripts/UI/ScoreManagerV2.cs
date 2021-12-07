@@ -60,5 +60,12 @@ namespace UI
         {
             return _currentScore / (float)maxScoreForLevel * 100;
         }
+
+        public void ResetScore()
+        {
+            _currentScore = 0;
+            _currentScoreOnSlider = 0;
+            _scoreSlider.value = 0;
+        }
     }
 }
