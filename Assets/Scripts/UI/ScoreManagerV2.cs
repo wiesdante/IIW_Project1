@@ -9,11 +9,10 @@ namespace UI
         private int _currentScore;
         private int _currentScoreOnSlider;
 
-        private Slider _scoreSlider;
+        [SerializeField] private Slider _scoreSlider;
 
         private void Start()
         {
-            _scoreSlider = GameObject.FindWithTag("ScoreSlider").GetComponent<Slider>();
             _scoreSlider.maxValue = maxScoreForLevel;
         }
 

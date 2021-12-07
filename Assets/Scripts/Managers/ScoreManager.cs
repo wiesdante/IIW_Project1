@@ -34,6 +34,7 @@ public class ScoreManager : MonoBehaviour
         if(GameManager.gameStarted)
         {
             score += add;
+            UI.ScoreManagerV2.Instance.AddScore(add);
             playerUI.UpdateScore(score);
         }
     }
