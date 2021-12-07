@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace Managers
@@ -7,6 +8,14 @@ namespace Managers
         public delegate void PickupEvent(float time);
 
         public static event PickupEvent GlobalFreeze;
+
+        private void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.F))
+            {
+                InvokeGlobalFreeze(3);
+            }
+        }
 
         public void InvokeGlobalFreeze(float freezeTime)
         {

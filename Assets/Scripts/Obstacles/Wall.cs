@@ -45,7 +45,7 @@ namespace Obstacles
         [Header("Freeze Related")]
         [SerializeField]private GameObject freezeParticles;
         [SerializeField]private Material frozenWallMaterial;
-        private Material _mainMaterial;
+        private Material[] _mainMaterials;
         
         private bool _isFrozen;
         private Coroutine _freezeCoroutine;
@@ -53,6 +53,11 @@ namespace Obstacles
         #endregion
 
         private MeshRenderer _meshRenderer;
+
+        public Wall(Material[] mainMaterials)
+        {
+            _mainMaterials = mainMaterials;
+        }
 
         private void Start()
         {
@@ -96,7 +101,12 @@ namespace Obstacles
 
             #region Freeze Related Teachings
 
-            _mainMaterial = _meshRenderer.material;
+            _mainMaterials = new Material[_meshRenderer.materials.Length];
+
+            for (int i = 0; i < _meshRenderer.materials.Length; i++)
+            {
+                _mainMaterials[i] = _meshRenderer.materials[i];
+            }
 
             #endregion
 
@@ -157,7 +167,12 @@ namespace Obstacles
         {
             _isFrozen = true;
             if (freezeParticles != null) freezeParticles.SetActive(true);
-            _meshRenderer.material = frozenWallMaterial;
+            var mats = _meshRenderer.materials;
+            for (var i = 0; i < mats.Length; i++)
+            {
+                mats[i] = frozenWallMaterial;
+            }
+            _meshRenderer.materials = mats;
 
             yield return new WaitForSeconds(freezeTime);
             
@@ -170,7 +185,12 @@ namespace Obstacles
             
             _isFrozen = false;
             if(freezeParticles != null) freezeParticles.SetActive(false);
-            _meshRenderer.material = _mainMaterial;
+            var mats = _meshRenderer.materials;
+            for (var i = 0; i < mats.Length; i++)
+            {
+                mats[i] = _mainMaterials[i];
+            }
+            _meshRenderer.materials = mats;
         }
 
         #endregion
