@@ -25,6 +25,9 @@ namespace UI
         [SerializeField] private float selfDestroyDelay;
 
 
+        [SerializeField] private bool isStrike = false;
+
+
         private void OnEnable()
         {
             #region Self Destroy
@@ -40,8 +43,15 @@ namespace UI
             if (scaleLoopEnabled)
             {
                 transform.localScale = startScale;
-                gameObject.transform.DOScale(endScale, scaleLoopTime/2)
-                    .SetLoops(LoopAmount, LoopType.Yoyo);
+                if (isStrike)
+                {
+                    gameObject.transform.DOScale(endScale, scaleLoopTime / 2)
+                        .SetLoops(1, LoopType.Yoyo);
+                } else
+                {
+                    gameObject.transform.DOScale(endScale, scaleLoopTime / 2)
+                        .SetLoops(LoopAmount, LoopType.Yoyo);
+                }
             }
 
             #endregion
@@ -51,12 +61,26 @@ namespace UI
             if (rotationLoopEnabled)
             {
                 transform.rotation = Quaternion.Euler(startRotation);
-                gameObject.transform.DORotate(endRotation,rotationLoopTime/2,RotateMode.FastBeyond360)
-                    .SetLoops(LoopAmount, LoopType.Yoyo);
+                if (isStrike)
+                {
+                    gameObject.transform.DOScale(endScale, scaleLoopTime / 2)
+                        .SetLoops(1, LoopType.Yoyo);
+                }
+                else
+                {
+                    gameObject.transform.DORotate(endRotation, rotationLoopTime / 2, RotateMode.FastBeyond360)
+                        .SetLoops(LoopAmount, LoopType.Yoyo);
+                }
             }
 
             #endregion
             
+        }
+
+        private void OnDisable()
+        {
+            transform.localScale = startScale;
+            transform.rotation = Quaternion.Euler(startRotation);
         }
 
         private IEnumerator SelfDestroyCoroutine(float delay)

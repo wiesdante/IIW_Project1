@@ -8,6 +8,7 @@ public class Movement : MonoBehaviour
     MobileInput input;
     Rigidbody rb;
     bool forceApplied;
+    bool first;
     LevelManager levelMan;
 
     void Start()
@@ -17,11 +18,16 @@ public class Movement : MonoBehaviour
         input.onReleaseEvent += Input_onReleaseEvent;
         input.onStartEvent += Input_onStartEvent;
         forceApplied = false;
+        first = true;
         levelMan = LevelManager.Instance;
     }
 
     private void Input_onStartEvent(Vector3 obj)
     {
+        if (first) { 
+            UIManager.Instance.SetInterface(Phase.INGAME);
+            first = false;
+        }
         if(forceApplied)
         {
             input.LockInput();

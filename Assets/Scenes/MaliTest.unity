@@ -123,26 +123,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &652859692 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2014873211, guid: 407502ca8d7e85f44b08993cd0c97f9e, type: 3}
-  m_PrefabInstance: {fileID: 8324378397418206767}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &652859696
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 652859692}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a0da8c431c518e14eb8515f69d1ad2d5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enableLoop: 1
-  animationDistance: 300
-  loopTime: 1
 --- !u!108 &2015149112 stripped
 Light:
   m_CorrespondingSourceObject: {fileID: 8324378397015837207, guid: 407502ca8d7e85f44b08993cd0c97f9e, type: 3}
@@ -155,10 +135,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2014873212, guid: 407502ca8d7e85f44b08993cd0c97f9e, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -46
-      objectReference: {fileID: 0}
     - target: {fileID: 1434612486261490725, guid: 407502ca8d7e85f44b08993cd0c97f9e, type: 3}
       propertyPath: m_sharedMaterial
       value: 
@@ -187,10 +163,6 @@ PrefabInstance:
       propertyPath: m_sharedMaterial
       value: 
       objectReference: {fileID: 2100000, guid: 0d596da38ab0561428b308d314e82cb6, type: 2}
-    - target: {fileID: 3336653299457711182, guid: 407502ca8d7e85f44b08993cd0c97f9e, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 3548892210110310449, guid: 407502ca8d7e85f44b08993cd0c97f9e, type: 3}
       propertyPath: m_sharedMaterial
       value: 
@@ -266,10 +238,6 @@ PrefabInstance:
     - target: {fileID: 8324378398213545181, guid: 407502ca8d7e85f44b08993cd0c97f9e, type: 3}
       propertyPath: m_Name
       value: wholePackage
-      objectReference: {fileID: 0}
-    - target: {fileID: 9171382582894044245, guid: 407502ca8d7e85f44b08993cd0c97f9e, type: 3}
-      propertyPath: m_Name
-      value: rotary_4a
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 407502ca8d7e85f44b08993cd0c97f9e, type: 3}

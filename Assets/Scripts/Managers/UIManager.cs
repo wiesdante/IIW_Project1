@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 using UnityEngine.SceneManagement;
 public class UIManager : MonoBehaviour
 {
@@ -17,6 +18,11 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Canvas mainMenuCanvas;
     [SerializeField] private Canvas PostGameCanvas;
     [SerializeField] private Canvas InGameCanvas;
+
+    [SerializeField] private Image postGameScreen;
+    [SerializeField] private Sprite winSprite;
+    [SerializeField] private Sprite loseSprite;
+
     private Canvas activeCanvas;
 
 
@@ -84,12 +90,14 @@ public class UIManager : MonoBehaviour
                 activeCanvas = PostGameCanvas;
                 if (level.LevelStatus())
                 {
-                    playerUI.setInfoText(" YOU PASSED ");
+                    postGameScreen.sprite = winSprite;
+                    playerUI.setInfoText("Score\n"+ScoreManager.Instance.GetScore().ToString());
                     nextLevelButton.gameObject.SetActive(true);
                 }
                 else
                 {
-                    playerUI.setInfoText("YOU FAILED");
+                    postGameScreen.sprite = loseSprite;
+                    playerUI.setInfoText("Score\n" + ScoreManager.Instance.GetScore().ToString());
                     delay = 0;
                     restartButton.gameObject.SetActive(true);
                 }

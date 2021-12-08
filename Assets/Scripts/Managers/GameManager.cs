@@ -45,7 +45,7 @@ public class GameManager : MonoBehaviour
         InGameCam.gameObject.SetActive(false);
         PostGameCam.gameObject.SetActive(false);
         MainMenuCam.gameObject.SetActive(false);
-        SetPhase(Phase.MENU);
+        SetPhase(Phase.INGAME);
     }
 
     private void SetPhaseAction()

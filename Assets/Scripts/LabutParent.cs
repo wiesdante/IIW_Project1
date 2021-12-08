@@ -5,6 +5,7 @@ public class LabutParent : MonoBehaviour
 {
     private int _totalLabutAmount;
     private int _devrilenLabutAmount;
+    [SerializeField] private float delay = 2f;
 
     private void Start()
     {
@@ -17,7 +18,7 @@ public class LabutParent : MonoBehaviour
         if (_devrilenLabutAmount == _totalLabutAmount)
         {
             print("strike");
-            StartCoroutine(SelfDestroyCoroutine(2f));
+            StartCoroutine(SelfDestroyCoroutine(delay));
         }
     }
 
