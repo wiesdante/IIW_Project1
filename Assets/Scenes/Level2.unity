@@ -201,7 +201,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 265255083519475513, guid: 816dfb28c89aa5446b0b3dda9e81776c, type: 3}
       propertyPath: moveSpeed
-      value: 9
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 265255083519475513, guid: 816dfb28c89aa5446b0b3dda9e81776c, type: 3}
       propertyPath: moveToNegative
@@ -653,7 +653,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 265255083519475513, guid: 816dfb28c89aa5446b0b3dda9e81776c, type: 3}
       propertyPath: moveSpeed
-      value: 8
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 265255083519475513, guid: 816dfb28c89aa5446b0b3dda9e81776c, type: 3}
       propertyPath: moveToNegative
@@ -813,6 +813,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: -33.24
       objectReference: {fileID: 0}
+    - target: {fileID: 8081782218002296041, guid: 407502ca8d7e85f44b08993cd0c97f9e, type: 3}
+      propertyPath: moveSpeed
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 8081782218354266422, guid: 407502ca8d7e85f44b08993cd0c97f9e, type: 3}
       propertyPath: m_LocalPosition.x
       value: -4.89
@@ -821,9 +825,17 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: -88.32001
       objectReference: {fileID: 0}
+    - target: {fileID: 8081782218354266442, guid: 407502ca8d7e85f44b08993cd0c97f9e, type: 3}
+      propertyPath: moveSpeed
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 8081782218807151763, guid: 407502ca8d7e85f44b08993cd0c97f9e, type: 3}
       propertyPath: m_LocalPosition.z
       value: -48.51
+      objectReference: {fileID: 0}
+    - target: {fileID: 8081782218807151855, guid: 407502ca8d7e85f44b08993cd0c97f9e, type: 3}
+      propertyPath: moveSpeed
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 8324378396704618678, guid: 407502ca8d7e85f44b08993cd0c97f9e, type: 3}
       propertyPath: m_AnchorMax.y
