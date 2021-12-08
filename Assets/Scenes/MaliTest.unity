@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 0.922
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 2015149112}
-  m_IndirectSpecularColor: {r: 0.6351063, g: 0.28772172, b: 0.06662063, a: 0.922}
+  m_IndirectSpecularColor: {r: 0.6351063, g: 0.2877217, b: 0.06662063, a: 0.922}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -266,6 +266,10 @@ PrefabInstance:
     - target: {fileID: 8324378398213545181, guid: 407502ca8d7e85f44b08993cd0c97f9e, type: 3}
       propertyPath: m_Name
       value: wholePackage
+      objectReference: {fileID: 0}
+    - target: {fileID: 9171382582894044245, guid: 407502ca8d7e85f44b08993cd0c97f9e, type: 3}
+      propertyPath: m_Name
+      value: rotary_4a
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 407502ca8d7e85f44b08993cd0c97f9e, type: 3}
