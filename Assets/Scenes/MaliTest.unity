@@ -5184,6 +5184,22 @@ PrefabInstance:
       propertyPath: lives
       value: 11
       objectReference: {fileID: 0}
+    - target: {fileID: 8081782217789940980, guid: 407502ca8d7e85f44b08993cd0c97f9e, type: 3}
+      propertyPath: moveSpeed
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8081782218002296041, guid: 407502ca8d7e85f44b08993cd0c97f9e, type: 3}
+      propertyPath: moveSpeed
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8081782218354266442, guid: 407502ca8d7e85f44b08993cd0c97f9e, type: 3}
+      propertyPath: moveSpeed
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8081782218807151855, guid: 407502ca8d7e85f44b08993cd0c97f9e, type: 3}
+      propertyPath: moveSpeed
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 8324378396704618678, guid: 407502ca8d7e85f44b08993cd0c97f9e, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0

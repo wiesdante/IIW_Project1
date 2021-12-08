@@ -11,6 +11,7 @@ public class LevelManager : MonoBehaviour
     [SerializeField] public int lives = 1;
     private float maxLevelIndex;
     [SerializeField] private int complete;
+    [SerializeField] private int failDelay;
 
     private PlayerUIHandler playerUI;
     private GameManager gm;
@@ -32,7 +33,7 @@ public class LevelManager : MonoBehaviour
         isSuccess = false;
         progress = 0;
         complete = 0;
-        maxLevelIndex = SceneManager.sceneCount - 1;
+        maxLevelIndex = SceneManager.sceneCountInBuildSettings - 1;
     }
     public void SetComplete(int complete)
     {
@@ -70,14 +71,15 @@ public class LevelManager : MonoBehaviour
     {
         SceneManager.LoadScene(level);
     }
-    public void LevelFailed()
+    public void LevelFailed(int seconds)
     {
         this.isSuccess = false;
-        StartCoroutine(PostGameDelay(3));
+        StartCoroutine(PostGameDelay(seconds));
     }
 
     IEnumerator PostGameDelay(int seconds)
     {
+        GameManager.gameStarted = false;
         yield return new WaitForSeconds(seconds);
         gm.SetPhase(Phase.POSTGAME);
     }
@@ -93,6 +95,7 @@ public class LevelManager : MonoBehaviour
         {
             this.isSuccess = true;
             level++;
+            Debug.Log("Level: " + level + " - Max Level: " + maxLevelIndex);
             if(level > maxLevelIndex)
             {
                 level = 0;
@@ -110,7 +113,7 @@ public class LevelManager : MonoBehaviour
             playerUI.SetLivesText(lives);
             if (lives == 0)
             {
-                LevelFailed();
+                LevelFailed(failDelay);
             }
         }
     }
@@ -126,5 +129,4 @@ public class LevelManager : MonoBehaviour
         this.lives = defaultLive;
         playerUI.SetLivesText(this.lives);
     }
-
 }

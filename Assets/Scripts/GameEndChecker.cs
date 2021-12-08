@@ -21,7 +21,7 @@ public class GameEndChecker : MonoBehaviour
                 LevelManager.Instance.IncreaseProgress(1);
             } else
             {
-                LevelManager.Instance.DecreaseLife();
+                LevelManager.Instance.LevelFailed(0);
             }
         }
     }
