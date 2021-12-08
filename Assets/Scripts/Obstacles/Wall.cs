@@ -53,6 +53,7 @@ namespace Obstacles
         #endregion
 
         private MeshRenderer _meshRenderer;
+        
 
         public Wall(Material[] mainMaterials)
         {
@@ -114,6 +115,7 @@ namespace Obstacles
 
         private void Update()
         {
+            if(Time.timeSinceLevelLoad < 1) return;
             var transform1 = transform;
 
             #region Moving and Rotating the Wall
@@ -194,5 +196,6 @@ namespace Obstacles
         }
 
         #endregion
+        
     }
 }
