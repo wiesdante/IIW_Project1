@@ -8,6 +8,8 @@ public class Movement : MonoBehaviour
     MobileInput input;
     Rigidbody rb;
     bool forceApplied;
+    LevelManager levelMan;
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -15,6 +17,7 @@ public class Movement : MonoBehaviour
         input.onReleaseEvent += Input_onReleaseEvent;
         input.onStartEvent += Input_onStartEvent;
         forceApplied = false;
+        levelMan = LevelManager.Instance;
     }
 
     private void Input_onStartEvent(Vector3 obj)
@@ -41,6 +44,7 @@ public class Movement : MonoBehaviour
 
     private void Input_onReleaseEvent(Vector3 obj)
     {
+        levelMan.DecreaseLife();
         rb.AddForce(obj, ForceMode.Impulse);
         forceApplied = true;
         input.LockInput();

@@ -9,7 +9,7 @@ public class PlayerUIHandler : MonoBehaviour
     [SerializeField] private TextMeshProUGUI postGameScoreText;
     [SerializeField] private TextMeshProUGUI infoText;
     [SerializeField] private TextMeshProUGUI countdownText;
-    [SerializeField] private Slider ballSlider;
+    [SerializeField] private TextMeshProUGUI livesText;
     [SerializeField] private Image strikeImage;
 
     public bool Instantiated;
@@ -27,13 +27,9 @@ public class PlayerUIHandler : MonoBehaviour
             Destroy(gameObject);
         }
     }
-    public void DecreaseLivesText()
+    public void SetLivesText(int lives)
     {
-        ballSlider.value += 1;
-    }
-    public void ResetLivesText()
-    {
-        ballSlider.value = 0;
+        livesText.text = lives.ToString();
     }
     public void UpdateScore(int score)
     {

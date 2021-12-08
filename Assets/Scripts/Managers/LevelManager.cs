@@ -2,6 +2,7 @@
 using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
+using System.Collections;
 
 public class LevelManager : MonoBehaviour
 {
@@ -72,8 +73,15 @@ public class LevelManager : MonoBehaviour
     public void LevelFailed()
     {
         this.isSuccess = false;
+        StartCoroutine(PostGameDelay(3));
+    }
+
+    IEnumerator PostGameDelay(int seconds)
+    {
+        yield return new WaitForSeconds(seconds);
         gm.SetPhase(Phase.POSTGAME);
     }
+
     public bool LevelStatus()
     {
         return this.isSuccess;
@@ -99,7 +107,7 @@ public class LevelManager : MonoBehaviour
         if(!isSuccess)
         {
             lives--;
-            playerUI.DecreaseLivesText();
+            playerUI.SetLivesText(lives);
             if (lives == 0)
             {
                 LevelFailed();
@@ -116,7 +124,7 @@ public class LevelManager : MonoBehaviour
         this.progress = 0;
         isSuccess = false;
         this.lives = defaultLive;
-        playerUI.ResetLivesText();
+        playerUI.SetLivesText(this.lives);
     }
 
 }
