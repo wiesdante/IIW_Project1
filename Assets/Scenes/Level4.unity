@@ -1028,6 +1028,10 @@ PrefabInstance:
       propertyPath: m_sharedMaterial
       value: 
       objectReference: {fileID: 1745603679379847858, guid: eb3c85697d3420b458106e9cd16e5cc8, type: 2}
+    - target: {fileID: 3787898144516862417, guid: 407502ca8d7e85f44b08993cd0c97f9e, type: 3}
+      propertyPath: failDelay
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 3787898145864499307, guid: 407502ca8d7e85f44b08993cd0c97f9e, type: 3}
       propertyPath: requiredScore
       value: 300
@@ -1139,6 +1143,10 @@ PrefabInstance:
     - target: {fileID: 8324378398219774329, guid: 407502ca8d7e85f44b08993cd0c97f9e, type: 3}
       propertyPath: m_LocalPosition.z
       value: -76.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8324378398267078980, guid: 407502ca8d7e85f44b08993cd0c97f9e, type: 3}
+      propertyPath: maxScoreForLevel
+      value: 400
       objectReference: {fileID: 0}
     - target: {fileID: 8362229519213105682, guid: 407502ca8d7e85f44b08993cd0c97f9e, type: 3}
       propertyPath: m_LocalPosition.x

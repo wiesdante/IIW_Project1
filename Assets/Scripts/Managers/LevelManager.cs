@@ -53,6 +53,7 @@ public class LevelManager : MonoBehaviour
     {
         ResetProgress();
         //StartCoroutine(playerUI.Countdown(3));
+        Debug.Log("Level: " + SceneManager.GetActiveScene().name);
         GameManager.gameStarted = true;
     }
     public bool LevelFinished()
