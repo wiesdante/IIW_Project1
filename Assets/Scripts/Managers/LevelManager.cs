@@ -48,12 +48,13 @@ public class LevelManager : MonoBehaviour
         gm = GameManager.Instance;
         playerUI = PlayerUIHandler.Instance;
         level = PlayerPrefs.GetInt("Level", 0);
+        playerUI.SetupLivesImage(lives);
+        playerUI.ManageLivesImage(lives);
     }
     public void StartLevel()
     {
         ResetProgress();
         //StartCoroutine(playerUI.Countdown(3));
-        Debug.Log("Level: " + SceneManager.GetActiveScene().name);
         GameManager.gameStarted = true;
     }
     public bool LevelFinished()
@@ -96,7 +97,6 @@ public class LevelManager : MonoBehaviour
         {
             this.isSuccess = true;
             level++;
-            Debug.Log("Level: " + level + " - Max Level: " + maxLevelIndex);
             if(level > maxLevelIndex)
             {
                 level = 0;
@@ -112,6 +112,7 @@ public class LevelManager : MonoBehaviour
         {
             lives--;
             playerUI.SetLivesText(lives);
+            playerUI.ManageLivesImage(lives);
             if (lives == 0)
             {
                 LevelFailed(failDelay);
@@ -122,6 +123,7 @@ public class LevelManager : MonoBehaviour
     {
         this.lives = lives;
         defaultLive = lives;
+        playerUI.ManageLivesImage(lives);
     }
     public void ResetProgress()
     {

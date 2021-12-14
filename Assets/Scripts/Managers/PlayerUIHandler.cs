@@ -11,6 +11,8 @@ public class PlayerUIHandler : MonoBehaviour
     [SerializeField] private TextMeshProUGUI countdownText;
     [SerializeField] private TextMeshProUGUI livesText;
     [SerializeField] private Image strikeImage;
+    [SerializeField] private GameObject livesStack;
+    [SerializeField] private GameObject lifeBallPrefab;
 
     public bool Instantiated;
     public static PlayerUIHandler Instance { get; private set; }
@@ -58,5 +60,23 @@ public class PlayerUIHandler : MonoBehaviour
     public void SetStrikeImg(bool active)
     {
         strikeImage.gameObject.SetActive(active);
+    }
+
+    public void SetupLivesImage(int lives)
+    {
+        for (int i = 0; i<lives; i++)
+        {
+            GameObject ball = Instantiate(lifeBallPrefab, livesStack.transform);
+            ball.SetActive(false);
+        }
+    }
+
+    public void ManageLivesImage(int lives)
+    {
+        for(int i = 0; i < livesStack.transform.childCount; i++)
+        {
+            if(i < lives) livesStack.transform.GetChild(i).gameObject.SetActive(true);
+            else livesStack.transform.GetChild(i).gameObject.SetActive(false);
+        }
     }
 }
