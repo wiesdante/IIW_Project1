@@ -21,6 +21,7 @@ public class GameEndChecker : MonoBehaviour
                 LevelManager.Instance.IncreaseProgress(1);
             } else
             {
+                UIManager.Instance.scoreFail = true;
                 LevelManager.Instance.LevelFailed(0);
             }
         }

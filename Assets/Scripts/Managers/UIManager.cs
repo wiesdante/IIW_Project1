@@ -23,6 +23,9 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Sprite winSprite;
     [SerializeField] private Sprite loseSprite;
 
+    [HideInInspector] public bool scoreFail;
+    [SerializeField] private TextMeshProUGUI failText;
+
     private Canvas activeCanvas;
 
 
@@ -48,6 +51,7 @@ public class UIManager : MonoBehaviour
         nextLevelButton.gameObject.SetActive(false);
         ResetCanvas();
         SetInterface(Phase.MENU);
+        scoreFail = false;
     }
     private void RestartGame()
     {
@@ -98,6 +102,7 @@ public class UIManager : MonoBehaviour
                 {
                     postGameScreen.sprite = loseSprite;
                     playerUI.setInfoText("Score\n" + ScoreManager.Instance.GetScore().ToString());
+                    if (scoreFail) failText.text = "Not enough score";
                     delay = 0;
                     restartButton.gameObject.SetActive(true);
                 }

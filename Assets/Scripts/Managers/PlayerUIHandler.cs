@@ -67,6 +67,8 @@ public class PlayerUIHandler : MonoBehaviour
         for (int i = 0; i<lives; i++)
         {
             GameObject ball = Instantiate(lifeBallPrefab, livesStack.transform);
+            ball.GetComponent<Image>().color = Color.Lerp(Color.red, Color.green, (float)i /lives);
+
             ball.SetActive(false);
         }
     }
