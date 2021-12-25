@@ -5,6 +5,7 @@ using Cinemachine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using TMPro;
+using Tabtale.TTPlugins;
 
 public enum Phase { INGAME, SHOP, MENU, POSTGAME }
 public class GameManager : MonoBehaviour
@@ -27,7 +28,8 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get; private set; }
     void Awake()
     {
-        if( Instance == null)
+        TTPCore.Setup();
+        if ( Instance == null)
         {
             Instance = this;
         }
